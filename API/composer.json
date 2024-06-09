@@ -1,0 +1,21 @@
+{
+    "name": "fhtechnikum/theshop",
+    "description": "WebShopBackend",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Fhtechnikum\\Theshop\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "David Ala"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+      "ext-pdo": "*",
+      "ext-json": "*",
+      "ext-mysql_xdevapi": "*"
+    }
+}
