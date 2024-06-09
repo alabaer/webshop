@@ -40,7 +40,7 @@ class CartHandling {
             let url = $(this).attr('value');
             self.manipulateItems(url, HTTPVerb);
 
-        });00
+        });
     }
 
     removeFromCartEvent() {
