@@ -1,6 +1,6 @@
 class ProductsCreation {
     constructor() {
-        this.$outputfield = $('#ProductsOutput');
+        this.$outputfield = $('#products-output');
     }
 
     initGUIevents() {
@@ -9,7 +9,7 @@ class ProductsCreation {
 
     productsViewEvent() {
         let self = this;
-        $('#CategoryContainer').on('click', 'button', function () {
+        $('#category-container').on('click', 'button', function () {
             let url = $(this).attr('value');
             self.getProducts(url);
         });

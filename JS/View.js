@@ -1,7 +1,7 @@
 class View {
     constructor() {
-        this.$cart = $("#CartContainer")
-        this.$shop = $("#ShopViewContainer")
+        this.$cart = $("#cart-container")
+        this.$shop = $("#shop-view-container")
     }
 
     initViewEvents() {
@@ -16,13 +16,13 @@ class View {
     }
 
     viewCart() {
-        $("#ShopView").on("click", () => {
+        $("#shop-view").on("click", () => {
             this.showShop();
         })
     }
 
     viewShop() {
-        $("#CartView").on("click", () => {
+        $("#cart-view").on("click", () => {
             this.showCart()
         })
     }

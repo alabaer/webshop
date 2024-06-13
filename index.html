@@ -25,22 +25,22 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <form class="container-fluid justify-content-start">
-            <button class="btn btn-outline-secondary mx-2" type="button" id="ShopView">Shop</button>
-            <button class="btn btn-outline-secondary mx-2" type="button" id="CartView">Cart</button>
+            <button class="btn btn-outline-secondary mx-2" type="button" id="shop-view">Shop</button>
+            <button class="btn btn-outline-secondary mx-2" type="button" id="cart-view">Cart</button>
         </form>
     </div>
 </nav>
 
 <!-- Modal Start -->
-<div class="modal fade" id="ProductModal" tabindex="-1" aria-labelledby="ProductModalLabel"
+<div class="modal fade" id="product-modal" tabindex="-1" aria-labelledby="product-modal-label"
      aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title fs-5" id="ProductModalLabel">Sucess</h5>
+                <h5 class="modal-title fs-5" id="product-modal-label">Sucess</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body" id="ProductModalBody">
+            <div class="modal-body" id="product-modal-body">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -49,22 +49,24 @@
     </div>
 </div>
 <h1> Welcome to "The Shop"</h1>
-<div id="MainContent" class="container-fluid">
-    <div class="container-fluid" id="ShopViewContainer">
-        <div class="container-fluid" id="CategoryContainer">
-            <div class="row column" id="CategoryOutput">
+<div id="main-content" class="container-fluid">
+    <div class="container-fluid" id="shop-view-container">
+        <div class="container-fluid" id="category-container">
+            <div class="row column" id="category-output">
                 <!-- generated Category buttons here -->
             </div>
         </div>
-        <div class="container-fluid" id="ProductsContainer">
-            <div class="row justify-content" id="ProductsOutput">
+        <div class="container-fluid" id="products-container">
+            <div class="row justify-content" id="products-output">
             </div>
             <!-- generated Product Cards here -->
         </div>
     </div>
-    <div class="container-fluid" id="CartContainer">
+    <div class="container-fluid" id="cart-container">
         <h1>Cart</h1>
-        <h3 id="PriceOutput"><!-- Price generated here --></h3>
+        <h3 id="price-output">
+            <!-- Price generated here -->
+        </h3>
         <table class="table">
             <thead>
             <tr>
@@ -75,7 +77,7 @@
                 <th class="text-center" scope="col">Add/Remove</th>
             </tr>
             </thead>
-            <tbody id="CartOutput">
+            <tbody id="cart-output">
             <!-- generated CartCreation Items here -->
             </tbody>
         </table>

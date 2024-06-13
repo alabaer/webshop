@@ -10,7 +10,7 @@ class CartHandling {
     }
 
     cartCreationEvent() {
-        $('#CartView').on('click', () => {
+        $('#cart-view').on('click', () => {
             this.getCartItems();
         });
     }
@@ -35,7 +35,7 @@ class CartHandling {
 
     addToCartEvent() {
         let self = this;
-        $('#CartOutput').on('click', 'button[name="AddButton"]', function () {
+        $('#cart-output').on('click', 'button[name="AddButton"]', function () {
             let HTTPVerb = "POST";
             let url = $(this).attr('value');
             self.manipulateItems(url, HTTPVerb);
@@ -45,7 +45,7 @@ class CartHandling {
 
     removeFromCartEvent() {
         let self = this;
-        $('#CartOutput').on('click', 'button[name="RemoveButton"]', function () {
+        $('#cart-output').on('click', 'button[name="RemoveButton"]', function () {
             let HTTPVerb = "DELETE";
             let url = $(this).attr('value');
             self.manipulateItems(url, HTTPVerb);

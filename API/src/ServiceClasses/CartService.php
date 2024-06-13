@@ -48,10 +48,13 @@ class CartService
 
     public function removeItem(int $productId): array
     {
+        if ($this->cart->items[$productId] == null) {
+            return ['state' => 'ERROR'];
+        }
         if (isset($this->cart->items[$productId])) {
             $this->cart->items[$productId]->quantity--;
 
-            if ($this->cart->items[$productId]->quantity < 0) {
+            if ($this->cart->items[$productId]->quantity <= 0) {
                 unset($this->cart->items[$productId]);
             }
 
@@ -59,9 +62,7 @@ class CartService
             $_SESSION['cart'] = $this->cart->items;
 
         }
-        if ($this->cart->items[$productId] == null) {
-            return ['state' => 'ERROR'];
-        }
+
         return ['state' => 'OK'];
     }
 

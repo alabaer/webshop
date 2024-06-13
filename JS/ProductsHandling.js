@@ -1,8 +1,8 @@
 class ProductsHandling {
 
     constructor() {
-        this.$modal = $('#ProductModal');
-        this.$modalBody = $('#ProductModalBody')
+        this.$modal = $('#product-modal');
+        this.$modalBody = $('#product-modal-body')
     }
 
     productsHandlingEvents() {
@@ -11,7 +11,7 @@ class ProductsHandling {
 
     addProductEvent = () => {
         let self = this;
-        $('#ProductsContainer').on('click', 'button', function () {
+        $('#products-container').on('click', 'button', function () {
             let $url = $(this).attr('value');
             let $name = $(this).attr('id');
             self.addProductToCart($url, $name)

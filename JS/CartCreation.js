@@ -1,15 +1,13 @@
 class CartCreation {
     constructor() {
-        this.$outputfield = $('#CartOutput');
-        this.$pricefield = $('#PriceOutput')
+        this.$outputfield = $('#cart-output');
+        this.$pricefield = $('#price-output')
     }
 
     fillCart(response) {
+        this.$outputfield.empty();
         for (let item of response) {
-            if (!this.rowExists(item)) {
-                this.drawItem(item);
-            }
-            this.updateRow(item)
+            this.drawItem(item);
             this.priceTotalOutput(this.getPriceTotal(response))
         }
     }
@@ -28,34 +26,11 @@ class CartCreation {
         return totalPrice;
     }
 
-
-    rowExists(item) {
-        let rowId = item.id;
-        return $('#CartOutput').find(`tr[data-id="${rowId}"]`).length > 0;
-    }
-
-
-    updateRow(item) {
-        let rowId = item.id;
-        let $row = this.$outputfield.find(`tr[data-id="${rowId}"]`);
-        if (item.amount === 0) {
-            this.deleteRow(item);
-        }
-        $row.find('td[title="amount"]').text(item.amount);
-        $row.find('td[title="productSum"]').text(item.totalPrice);
-    }
-
-    deleteRow(item) {
-        let rowId = item.id;
-        this.$outputfield.find(`tr[data-id="${rowId}"]`).remove();
-    }
-
     drawItem(item) {
         this.createItemBody(item)
     }
 
     createItemBody(item) {
-        //Spaghetti, aber ich weiß nicht wie ich gut iterieren kann/soll
         let id = item.id;
         let $row = $('<tr></tr>');
         let $name = $('<td class="text-center" title="articleName"></td>');
