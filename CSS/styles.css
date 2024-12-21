@@ -18,7 +18,7 @@ h1 {
     margin: 20px;
 }
 
-#category-container, #products-container, #cart-container {
+#category-container, #products-container, #cart-container, #login-container, #order-history-container{
     background-color: #fff;
     width: 95%;
     padding: 20px;
@@ -38,6 +38,10 @@ h1 {
     transition: background-color 0.3s ease;
 }
 
+#right-buttons{
+    margin-left: auto;
+}
+
 .btn.btn-light:hover {
     background-color: #ff6347;
 }
@@ -48,4 +52,7 @@ h1 {
     padding: 20px;
     margin: 10px 0;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+#empty-cart, #empty-order-history, #not-loged-in-message{
+    text-align: center;
 }

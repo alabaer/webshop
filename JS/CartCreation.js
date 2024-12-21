@@ -1,12 +1,15 @@
 class CartCreation {
     constructor() {
-        this.$outputfield = $('#cart-output');
-        this.$pricefield = $('#price-output')
+        this.$outputField = $('#cart-output');
+        this.$priceField = $('#price-output');
+        this.$emptyCartMessage = $('#empty-cart');
+        this.$cartTableOutput = $('#cart-table-output');
     }
 
     fillCart(response) {
-        this.$outputfield.empty();
-        for (let item of response) {
+        this.$outputField.empty();
+        this.$priceField.empty();
+        for (let item of response.cart) {
             this.drawItem(item);
             this.priceTotalOutput(this.getPriceTotal(response))
         }
@@ -15,22 +18,19 @@ class CartCreation {
     priceTotalOutput(totalPrice) {
         let pricePhrase = "The Total Price is: "
         let dollar = " $"
-        this.$pricefield.text(pricePhrase + totalPrice.toFixed(2) + dollar);
+        this.$priceField.text(pricePhrase + totalPrice + dollar);
     }
 
     getPriceTotal(response) {
-        let totalPrice = 0;
-        for (let item of response) {
-            totalPrice += item.totalPrice;
-        }
-        return totalPrice;
+        return response.total.toFixed(2);
     }
+
 
     drawItem(item) {
-        this.createItemBody(item)
+        this.createCartBody(item)
     }
 
-    createItemBody(item) {
+    createCartBody(item) {
         let id = item.id;
         let $row = $('<tr></tr>');
         let $name = $('<td class="text-center" title="articleName"></td>');
@@ -45,10 +45,10 @@ class CartCreation {
         $name.text(item.articleName);
         $amount.text(item.amount);
         $price.text(item.price.toFixed(2));
-        $productSum.text(item.totalPrice.toFixed(2));
+        $productSum.text(item.amountPrice.toFixed(2));
         $buttons.append($addButton, $removeButton);
-        $row.append($name, $amount, $price, $productSum, $buttons)
-        this.$outputfield.append($row);
+        $row.append($name, $amount, $price, $productSum, $buttons);
+        this.$outputField.append($row);
 
     }
 

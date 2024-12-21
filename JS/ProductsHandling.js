@@ -1,8 +1,7 @@
 class ProductsHandling {
-
     constructor() {
         this.$modal = $('#product-modal');
-        this.$modalBody = $('#product-modal-body')
+        this.$modalBody = $('#product-modal-body');
     }
 
     productsHandlingEvents() {

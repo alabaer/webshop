@@ -1,6 +1,6 @@
 class CategoryCreation {
     constructor() {
-        this.$outputField = $('#category-output')
+        this.$outputField = $('#category-output');
     }
 
     initGUIevents() {

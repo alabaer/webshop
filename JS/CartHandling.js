@@ -4,9 +4,9 @@ class CartHandling {
     }
 
     cartHandlingEvents() {
-        this.cartCreationEvent();
         this.addToCartEvent();
         this.removeFromCartEvent();
+        this.cartCreationEvent();
     }
 
     cartCreationEvent() {
@@ -23,8 +23,14 @@ class CartHandling {
             method: "GET"
         })
             .done((response) => {
-                self.cart.fillCart(response.cart)
-
+                if (self.CartIsEmpty(response)) {
+                    self.cart.$cartTableOutput.hide();
+                    self.cart.$emptyCartMessage.show();
+                } else {
+                    self.cart.$emptyCartMessage.hide();
+                    self.cart.$cartTableOutput.show();
+                    self.cart.fillCart(response)
+                }
 
             })
             .fail(function (error) {
@@ -33,13 +39,16 @@ class CartHandling {
 
     }
 
+    CartIsEmpty(response) {
+        return response.cart.length === 0
+    }
+
     addToCartEvent() {
         let self = this;
         $('#cart-output').on('click', 'button[name="AddButton"]', function () {
             let HTTPVerb = "POST";
             let url = $(this).attr('value');
             self.manipulateItems(url, HTTPVerb);
-
         });
     }
 
@@ -51,7 +60,6 @@ class CartHandling {
             self.manipulateItems(url, HTTPVerb);
         });
     }
-
 
     manipulateItems(url, HTTPVerb) {
         let self = this;
@@ -72,4 +80,6 @@ class CartHandling {
     showError(error) {
         console.error(error);
     }
+
+
 }

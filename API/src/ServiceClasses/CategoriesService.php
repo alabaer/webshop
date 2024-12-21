@@ -2,11 +2,11 @@
 
 namespace Fhtechnikum\Theshop\ServiceClasses;
 
-use Fhtechnikum\Theshop\Repositories\CategoriesRepository;
+use Fhtechnikum\Theshop\Repositories\CategoriesReadRepository;
 
 class CategoriesService
 {
-    private CategoriesRepository $categoriesRepository;
+    private CategoriesReadRepository $categoriesRepository;
 
     public function __construct($categoriesRepository)
     {
@@ -15,6 +15,6 @@ class CategoriesService
 
     public function getAllCategories(): array
     {
-        return $this->categoriesRepository->getCategories();
+        return $this->categoriesRepository->aggregateCategories();
     }
 }

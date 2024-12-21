@@ -1,7 +1,7 @@
 <?php
 
-use Fhtechnikum\Theshop\Controller;
+use Fhtechnikum\Theshop\Controller\ProductsListController;
 
 require 'vendor/autoload.php';
-$app = new Controller();
-$app->route();
+$app = new \Fhtechnikum\Theshop\App();
+$app->start();

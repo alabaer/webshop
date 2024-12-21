@@ -2,20 +2,25 @@
 
 namespace Fhtechnikum\Theshop\ServiceClasses;
 
-use Fhtechnikum\Theshop\Repositories\ProductsByCategoryIDRepository;
+use Fhtechnikum\Theshop\Models\ProductsModel;
+use Fhtechnikum\Theshop\Repositories\ProductsReadRepository;
 
 class ProductsService
 {
-    private ProductsByCategoryIDRepository $productsRepository;
+    private ProductsReadRepository $productsReadRepository;
 
-    public function __construct($productsRepository)
+    public function __construct($productsReadRepository)
     {
-        $this->productsRepository = $productsRepository;
+        $this->productsReadRepository = $productsReadRepository;
     }
 
-    public function getAllProducts($productTypeId): array
+    public function getProductsByCategory($typeID): array
     {
-        return $this->productsRepository->getProductsByCategoryID($productTypeId);
+        return $this->productsReadRepository->aggregateProductsOfCategory($typeID);
     }
 
+    public function getProduct(int $productID): ProductsModel
+    {
+        return $this->productsReadRepository->getProduct($productID);
+    }
 }

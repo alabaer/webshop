@@ -2,72 +2,40 @@
 
 namespace Fhtechnikum\Theshop\ServiceClasses;
 
-use Fhtechnikum\Theshop\Models\CartModel;
-use Fhtechnikum\Theshop\Repositories\ProductsRepository;
-use SessionHandler;
+use Fhtechnikum\Theshop\Repositories\CartReadSessionRepository;
+use Fhtechnikum\Theshop\Repositories\CartWriteSessionRepository;
+
+require_once 'src/config/theShopConfig.php';
 
 class CartService
 {
-    private CartModel $cart;
-    private const ID_MAX = 85;
+    private CartReadSessionRepository $cartReadSessionRepository;
+    private CartWriteSessionRepository $cartWriteSessionRepository;
 
-    public function __construct()
+    public function __construct($cartReadSessionRepository, $cartWriteSessionRepository)
     {
-        session_start();
 
-        $this->cart = new CartModel();
+        $this->cartReadSessionRepository = $cartReadSessionRepository;
+        $this->cartWriteSessionRepository = $cartWriteSessionRepository;
 
-        $this->cart->session = new SessionHandler();
-
-        $this->cart->items = $_SESSION['cart'] ?? [];
 
     }
 
     public function addItem(int $productId): array
     {
-
-        $productRepository = new ProductsRepository($productId, DB_HOST, DB_NAME, DB_USER, DB_PASSWORD);
-
-        if ($productId <= self::ID_MAX) {
-            $product = $productRepository->getProduct($productId);
-
-            if (isset($this->cart->items[$productId])) {
-                $this->cart->items[$productId]->quantity++;
-            } else {
-                $product->quantity = 1;
-                $this->cart->items[$productId] = $product;
-            }
-
-            $_SESSION['cart'] = $this->cart->items;
-        }
-        if ($productId > self::ID_MAX) {
-            return ['state' => 'ERROR'];
-        }
-        return ['state' => 'OK'];
+        return $this->cartWriteSessionRepository->addItem($productId);
     }
 
-    public function removeItem(int $productId): array
+
+    public
+    function removeItem(int $productId): array
     {
-        if ($this->cart->items[$productId] == null) {
-            return ['state' => 'ERROR'];
-        }
-        if (isset($this->cart->items[$productId])) {
-            $this->cart->items[$productId]->quantity--;
-
-            if ($this->cart->items[$productId]->quantity <= 0) {
-                unset($this->cart->items[$productId]);
-            }
-
-
-            $_SESSION['cart'] = $this->cart->items;
-
-        }
-
-        return ['state' => 'OK'];
+        return $this->cartWriteSessionRepository->removeItem($productId);
     }
 
-    public function getItems(): array
+    public
+    function getItems(): array
     {
-        return $this->cart->items;
+        return $this->cartReadSessionRepository->getCart();
     }
 }
